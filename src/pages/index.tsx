@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 
-import { api } from "~/utils/api";
+import Todos from "~/components/Todos";
 
 const Home: NextPage = () => {
   const { data: sessionData } = useSession();
@@ -35,6 +35,15 @@ const AuthShowcase: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center gap-4">
+      {sessionData && (
+        <div
+          className="grid-cols grid
+       gap-4 md:gap-8"
+        >
+          <h3 className="text-xl font-bold">Todod</h3>
+          <Todos />
+        </div>
+      )}
       <p className="text-center text-2xl text-white">
         {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
       </p>
